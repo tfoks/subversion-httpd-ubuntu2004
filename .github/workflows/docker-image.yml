@@ -1,18 +1,16 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
+  create:
     branches: [ main ]
 
 jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag subversion-httpd-ubuntu2004:$(date +%s)
+      run: docker build . --file Dockerfile --tag subversion-httpd-ubuntu2004:${{GITHUB_REF}}
