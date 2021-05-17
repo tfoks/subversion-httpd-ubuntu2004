@@ -14,5 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Extract the version tag
+      id: vars
+      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag subversion-httpd-ubuntu2004:${GITHUB_REF}
+      run: docker build . --file Dockerfile --tag subversion-httpd-ubuntu2004:${{steps.vars.outputs.tag}}
