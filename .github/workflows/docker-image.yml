@@ -1,8 +1,8 @@
 name: Docker Image CI
 
 on:
-  push:
-    branches: [ main ]
+#  push:
+#    branches: [ main ]
   create:
     branches: [ main ]
 
@@ -10,10 +10,12 @@ jobs:
 
   build:
 
+    # as this container image is intended for Ubuntu 20.04 we build on that
     runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
+    # we will use the Git tag as version tag for the image, i.e. only running on "create" events makes sense
     - name: Extract the version tag
       id: vars
       run: echo ::set-output name=tag::$(echo ${GITHUB_REF:11})
