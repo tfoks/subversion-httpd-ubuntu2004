@@ -7,9 +7,9 @@
 -	**Maintained by**:  
 	[Thomas Foks](https://github.com/tfoks)
 
-# Supported tags
+# Supported tags and respective `Dockerfile` links
 
--	[`1.0`, `latest-prod`, `latest-dev`, `latest`](https://hub.docker.com/r/tfoks/subversion-httpd-ubuntu2004)
+-	[`0.5`, `latest-prod`, `latest-dev`, `latest`](https://github.com/tfoks/subversion-httpd-ubuntu2004/blob/5383fa13bd6b2289ccbc12e3160fbba8c95537aa/Dockerfile)
 `latest-prod` points to a production ready version
 `latest-dev` points to the latest development version and may be unstable
 
