@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV APACHE_CONFDIR /etc/apache2
 ENV APACHE_ENVVARS $APACHE_CONFDIR/envvars
 
-RUN apt update && \
-        apt install -q -y --no-install-recommends apache2 php libapache2-mod-php libapache2-mod-svn subversion subversion-tools enscript tar gzip sed diffutils && \
+RUN apt-get update && \
+        apt-get install -q -y --no-install-recommends apache2 php libapache2-mod-php libapache2-mod-svn subversion subversion-tools enscript tar gzip sed diffutils && \
         apt-get -y clean
 
 ENV APACHE_CONFDIR /etc/apache2
