@@ -26,8 +26,5 @@ jobs:
         head_ref: ${{ github.head_ref }}
     - name: Get the tag
       run: echo "The tag was ${{ steps.get-ref.outputs.tag }}"
-    - name: Extract the version tag
-      id: vars
-      run: echo ::set-output name=tag::$(echo ${GITHUB_REF:11})
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag subversion-httpd-ubuntu2004:${{ steps.get-ref.outputs.tag }}
