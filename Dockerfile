@@ -25,6 +25,13 @@ RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 COPY apache2/ /etc/apache2/
 #COPY htdocs/ /srv/www/htdocs/
 
+# add WebSVN to htdocs
+COPY websvn-2.6.1.tar.gz /var/www/html/
+RUN cd /var/www/html && tar xzf websvn-2.6.1.tar.gz && mv websvn-2.6.1 websvn && rm websvn-2.6.1.tar.gz
+COPY config.php /var/www/html/websvn/include/
+
+RUN cd /var/www/html && chown -R www-data:www-data *
+
 EXPOSE 80 
 EXPOSE 443 
 
