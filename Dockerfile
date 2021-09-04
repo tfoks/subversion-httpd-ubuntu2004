@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM ubuntu:focal-20210827
 
 LABEL maintainer="thomas.foks@capgemini.com"
 
