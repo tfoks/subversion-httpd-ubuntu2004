@@ -24,18 +24,18 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
-    # we will use the Git tag as version tag for the image, i.e. only running on "create" events makes sense
-    - name: Get the Ref
-      id: get-ref
-      uses: ankitvgupta/ref-to-tag-action@master
-      with:
-        ref: ${{ github.ref }}
-        head_ref: ${{ github.head_ref }}
-    - name: Get the tag
-      run: echo "The tag was ${{ steps.get-ref.outputs.tag }}"
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:${{ steps.get-ref.outputs.tag }}
+      - uses: actions/checkout@v2
+      # we will use the Git tag as version tag for the image, i.e. only running on "create" events makes sense
+      - name: Get the Ref
+        id: get-ref
+        uses: ankitvgupta/ref-to-tag-action@master
+        with:
+          ref: ${{ github.ref }}
+          head_ref: ${{ github.head_ref }}
+      - name: Get the tag
+        run: echo "The tag was ${{ steps.get-ref.outputs.tag }}"
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:${{ steps.get-ref.outputs.tag }}
 
   # Push image to Docker Hub
   push:
@@ -68,7 +68,7 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.get-ref.outputs.tag }}
 
       - name: Push the Docker image
-        run: docker push ${{ env.IMAGE_NAME }}:${{ steps.get-ref.outputs.tag }}
+        run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.get-ref.outputs.tag }}
 
       - name: Add additional label to the Docker image
         run: docker tag ${{ env.IMAGE_NAME }}:${{ steps.get-ref.outputs.tag }} ${{ env.IMAGE_NAME }}:latest-dev
