@@ -5,8 +5,14 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  create:
-    branches: [ main ]
+
+env:
+  # TODO: Creates container named ACCOUNT/REPO
+  #       Append /IMAGE-NAME to create a container named ACCOUNT/REPO/IMAGE-NAME
+  IMAGE_NAME: ${{ github.repository }}
+
+  # Registry.
+  REGISTRY: docker.io
 
 jobs:
 
@@ -27,4 +33,4 @@ jobs:
     - name: Get the tag
       run: echo "The tag was ${{ steps.get-ref.outputs.tag }}"
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag subversion-httpd-ubuntu2004:${{ steps.get-ref.outputs.tag }}
+      run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}:${{ steps.get-ref.outputs.tag }}
