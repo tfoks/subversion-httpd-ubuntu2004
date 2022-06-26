@@ -2,8 +2,9 @@ name: Docker Image Build and Push
 
 # runs only for PR on branch main
 on:
-  pull_request:
-    branches: main
+  push:
+    branches:
+      - main
 
 env:
   # TODO: Creates container named ACCOUNT/REPO
