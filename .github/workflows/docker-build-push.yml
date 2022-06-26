@@ -1,13 +1,10 @@
 name: Docker Image Build and Push
 
-#
-# this pipeline only runs on releases
-#
-
+# runs only for PR on branch main
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches:
+      - main
 
 env:
   # TODO: Creates container named ACCOUNT/REPO
