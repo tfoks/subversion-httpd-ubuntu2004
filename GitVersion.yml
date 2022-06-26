@@ -1,6 +1,4 @@
 mode: ContinuousDelivery
-ignore:
-  sha: []
 merge-message-formats: {}
 commit-message-incrementing: Enabled
 branches:
@@ -13,3 +11,5 @@ branches:
     track-merge-target: true
     tracks-release-branches: true
     is-release-branch: false
+ignore:
+  sha: []
